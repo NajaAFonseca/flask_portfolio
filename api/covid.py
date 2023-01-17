@@ -84,11 +84,13 @@ def getCountry(filter):
 """   
 class CovidAPI:
     """API Method to GET all Covid Data"""
+
     class _Read(Resource):
         def get(self):
             return getCovidAPI().json()
         
     """API Method to GET Covid Data for a Specific Country"""
+
     class _ReadCountry(Resource):
         def get(self, filter):
             return jsonify(getCountry(filter))
