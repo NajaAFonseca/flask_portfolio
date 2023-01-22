@@ -78,8 +78,8 @@ class User(db.Model):
     _uid = db.Column(db.String(255), unique=True, nullable=False)
     _password = db.Column(db.String(255), unique=False, nullable=False)
     _dob = db.Column(db.Date)
-    _age = db.Age(db.Integer, unique=False, nullable=False)
-    _classOf = db.classOf(db.Intege, unique=False, nullable=False)
+    _age = db.Column(db.Integer, unique=False, nullable=False)
+    _classOf = db.Column(db.Integer, unique=False, nullable=False)
 
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     posts = db.relationship("Post", cascade='all, delete', backref='users', lazy=True)
@@ -154,6 +154,14 @@ class User(db.Model):
     @age.setter
     def age(self, age):
         self._age = age
+
+    @property
+    def classOf(self):
+        return self._classOf
+
+    @classOf.setter
+    def classOf(self, classOf):
+        self._classOf = classOf
     
     # output content using str(object) in human readable form, uses getter
     # output content using json dumps, this is ready for API response
@@ -188,7 +196,7 @@ class User(db.Model):
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name="", uid="", password="", dob="", age="", classOf""):
+    def update(self, name="", uid="", password="", dob="", age="", classOf=""):
         """only updates values with length"""
         if len(name) > 0:
             self.name = name
