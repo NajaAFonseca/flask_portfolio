@@ -85,7 +85,7 @@ class User(db.Model):
     posts = db.relationship("Post", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, uid, password="123qwerty", dob=date.today(), age=10, classOf=2033):
+    def __init__(self, name, uid, password="123qwerty", dob=date.today(), age=10, classOf=2023):
         self._name = name    # variables with self prefix become part of the object, 
         self._uid = uid
         self.set_password(password)
@@ -233,13 +233,13 @@ def initUsers():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    u1 = User(name='Oprah Winfrey', uid='oprah', password='123yes', dob=date(1954, 1, 29), age = calculate_age(date(1954, 1, 29)), classOf = 1972)
-    u2 = User(name='Nicholas Tesla', uid='nick', password='123nick', dob=date(1973, 4, 28), age = calculate_age(date(1973, 4, 28)), classOf = 1991)
-    u3 = User(name='Graham Cracker', uid='graham', password='123smores', dob=date(2001, 5, 20), age = calculate_age(date(2001, 5, 20)), classOf = 2019)
-    u4 = User(name='Whitney Houston', uid='whitney', password='numba1singer', dob=date(1964, 7, 9), age = calculate_age(date(1964, 7, 9)), classOf = 1982)
-    u5 = User(name='Jeffrey Fonseca', uid='jeffrey', password='ilovemysister', dob=date(2005, 5, 8), age = calculate_age(date(2005, 5, 8)), classOf = 2023)
-    u6 = User(name= 'Naja Fonseca', uid='naja', password='123amira', dob=date(2007, 9, 20), age = calculate_age(date(2007, 9, 20)), classOf = 2025)
-    u7 = User(name='Sean Yeung', uid='syeung', password='123burger', dob=date(1995, 2, 3), age = calculate_age(date(1995, 2, 3)), classOf = 2013)
+    u1 = User(name='Oprah Winfrey', uid='oprah', password='123yes', dob=date(1954, 1, 29), age = calculate_age(date(1954, 1, 29)), classOf=1972)
+    u2 = User(name='Nicholas Tesla', uid='nick', password='123nick', dob=date(1973, 4, 28), age = calculate_age(date(1973, 4, 28)), classOf=1991)
+    u3 = User(name='Graham Cracker', uid='graham', password='123smores', dob=date(2001, 5, 20), age = calculate_age(date(2001, 5, 20)), classOf=2019)
+    u4 = User(name='Whitney Houston', uid='whitney', password='numba1singer', dob=date(1964, 7, 9), age = calculate_age(date(1964, 7, 9)), classOf=1982)
+    u5 = User(name='Jeffrey Fonseca', uid='jeffrey', password='ilovemysister', dob=date(2005, 5, 8), age = calculate_age(date(2005, 5, 8)), classOf=2023)
+    u6 = User(name= 'Naja Fonseca', uid='naja', password='123amira', dob=date(2007, 9, 20), age = calculate_age(date(2007, 9, 20)), classOf=2025)
+    u7 = User(name='Sean Yeung', uid='syeung', password='123burger', dob=date(1995, 2, 3), age = calculate_age(date(1995, 2, 3)), classOf=2013)
 
     users = [u1, u2, u3, u4, u5, u6, u7]
 
