@@ -88,7 +88,7 @@ class User(db.Model):
     def __init__(self, name, uid, password="123qwerty", dob=date.today(), age=10, classOf=2023):
         self._name = name    # variables with self prefix become part of the object, 
         self._uid = uid
-        self.set_password(password)
+        self._password = password
         self._dob = dob
         self._age = age
         self._classOf = classOf
@@ -119,19 +119,23 @@ class User(db.Model):
     
     @property
     def password(self):
-        return self._password[0:10] + "..." # because of security only show 1st characters
+        return self._password[0:6] + "..." # because of security only show 1st characters
 
     # update password, this is conventional setter
-    def set_password(self, password):
-        """Create a hashed password."""
-        self._password = generate_password_hash(password, method='sha256')
+    #def set_password(self, password):
+     #   """Create a hashed password."""
+      #  self._password = generate_password_hash(password, method='sha256')
 
     # check password parameter versus stored/encrypted password
-    def is_password(self, password):
-        """Check against hashed password."""
-        result = check_password_hash(self._password, password)
-        return result
+    #def is_password(self, password):
+     #   """Check against hashed password."""
+      #  result = check_password_hash(self._password, password)
+       # return result
     
+    @password.setter
+    def password(self, password):
+        self._password = password
+
     # dob property is returned as string, to avoid unfriendly outcomes
     @property
     def dob(self):
@@ -203,7 +207,7 @@ class User(db.Model):
         if len(uid) > 0:
             self.uid = uid
         if len(password) > 0:
-            self.set_password(password)
+            self.password
         if len(dob) > 0:
             self.dob = dob
         if len(age) > 0:

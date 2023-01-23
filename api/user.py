@@ -28,15 +28,17 @@ class UserAPI:
             # look for password and dob
             password = body.get('password')
             dob = body.get('dob')
+            classOf = body.get('classOf')
 
             ''' #1: Key code block, setup USER OBJECT '''
             uo = User(name=name, 
                       uid=uid)
             
             ''' Additional garbage error checking '''
+            uo.classOf = classOf
             # set password if provided
             if password is not None:
-                uo.set_password(password)
+                uo.password = password
             # convert to date type
             if dob is not None:
                 try:
